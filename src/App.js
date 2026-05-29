@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Ticker from './components/Ticker';
 import About from './components/About';
 import Services from './components/Services';
 import WhyUs from './components/WhyUs';
@@ -15,6 +16,7 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <Ticker />
         <About />
         <Services />
         <WhyUs />

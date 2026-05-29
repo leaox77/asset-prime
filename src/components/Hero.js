@@ -2,24 +2,24 @@ import React, { useEffect, useRef } from 'react';
 import './Hero.css';
 
 const Hero = () => {
+  const badgeRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const ctaRef = useRef(null);
-  const logoRef = useRef(null);
 
   useEffect(() => {
-    const elements = [logoRef, titleRef, subtitleRef, ctaRef];
+    const elements = [badgeRef, titleRef, subtitleRef, ctaRef];
     elements.forEach((ref, i) => {
       if (ref.current) {
         ref.current.style.opacity = '0';
-        ref.current.style.transform = 'translateY(40px)';
+        ref.current.style.transform = 'translateY(30px)';
         setTimeout(() => {
           if (ref.current) {
             ref.current.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
             ref.current.style.opacity = '1';
             ref.current.style.transform = 'translateY(0)';
           }
-        }, 200 + i * 200);
+        }, 150 + i * 180);
       }
     });
   }, []);
@@ -27,84 +27,86 @@ const Hero = () => {
   return (
     <section className="hero" id="inicio">
       <div className="hero__bg">
-        <img src="/images/cuadricula.png" alt="" className="hero__grid" aria-hidden="true" />
+        <div className="hero__grid"></div>
         <div className="hero__overlay"></div>
         <div className="hero__glow hero__glow--left"></div>
         <div className="hero__glow hero__glow--right"></div>
       </div>
 
       <div className="hero__container">
+        {/* LEFT CONTENT */}
         <div className="hero__content">
-          <div className="hero__badge" ref={logoRef}>
-            <span className="hero__badge-line"></span>
-            <span>Gestión de Activos Financieros</span>
-            <span className="hero__badge-line"></span>
+          <div className="hero__badge" ref={badgeRef}>
+            <span className="hero__badge-dot"></span>
+            <span>Asesores Financieros · Paraguay &amp; Latam</span>
           </div>
 
           <h1 className="hero__title" ref={titleRef}>
-            <span className="hero__title-special">Inversión</span>
-            <span className="hero__title-main">Inteligente para</span>
-            <span className="hero__title-gold">Tu Futuro</span>
+            <span className="hero__title-white">TU</span>
+            <span className="hero__title-white">PATRIMONIO</span>
+            <span className="hero__title-gold">MERECE</span>
+            <span className="hero__title-script">estrategia real</span>
           </h1>
 
           <p className="hero__subtitle" ref={subtitleRef}>
-            Asset Prime te ofrece soluciones financieras de vanguardia. 
-            Maximiza tu patrimonio con estrategias probadas y asesoramiento experto 
-            en mercados globales y activos digitales.
+            Estructuración financiera, wealth management y consultoría fintech
+            para empresas, PYMES y clientes patrimoniales. Desde Paraguay,
+            transformamos capital en crecimiento sostenible.
           </p>
 
           <div className="hero__cta-group" ref={ctaRef}>
-            <a href="#servicios" className="hero__btn hero__btn--primary">
-              <span>Explorar Servicios</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <a href="#contacto" className="hero__btn hero__btn--primary">
+              <span>Comenzar Ahora</span>
             </a>
-            <a href="#contacto" className="hero__btn hero__btn--secondary">
-              <span>Hablar con un Asesor</span>
+            <a href="#servicios" className="hero__btn hero__btn--secondary">
+              <span>Conoce Nuestros Servicios</span>
             </a>
           </div>
 
-          <div className="hero__stats">
-            <div className="hero__stat">
-              <span className="hero__stat-number">+500</span>
-              <span className="hero__stat-label">Clientes Activos</span>
-            </div>
-            <div className="hero__stat-divider"></div>
-            <div className="hero__stat">
-              <span className="hero__stat-number">$2M+</span>
-              <span className="hero__stat-label">Activos Gestionados</span>
-            </div>
-            <div className="hero__stat-divider"></div>
-            <div className="hero__stat">
-              <span className="hero__stat-number">98%</span>
-              <span className="hero__stat-label">Satisfacción</span>
-            </div>
+          <div className="hero__region">
+            <span className="hero__region-title">Paraguay &amp; Latam</span>
+            <span className="hero__region-sub">Cobertura Regional</span>
           </div>
         </div>
 
+        {/* RIGHT VISUAL */}
         <div className="hero__visual">
-          <div className="hero__logo-container">
-            <div className="hero__logo-ring hero__logo-ring--outer"></div>
-            <div className="hero__logo-ring hero__logo-ring--inner"></div>
-            <img src="/images/logo3D.png" alt="Asset Prime" className="hero__logo-3d" />
+          {/* León 3D centrado arriba */}
+          <div className="hero__lion-wrap">
+            <img
+              src="/images/logo3D.png"
+              alt="Asset Prime León"
+              className="hero__lion hero__lion--float"
+            />
           </div>
 
-          <div className="hero__coins">
-            <div className="hero__coin hero__coin--btc">
-              <img src="/images/bitcoin.png" alt="Bitcoin" />
-            </div>
-            <div className="hero__coin hero__coin--eth">
-              <img src="/images/etherium.png" alt="Ethereum" />
-            </div>
+          {/* 4 íconos flotantes debajo */}
+          <div className="hero__icons-row">
+            {/* Bolsa de dinero: centro → abajo */}
+            <img
+              src="/images/asesoramiento_financiero.png"
+              alt="Bolsa de dinero"
+              className="hero__icon hero__icon--bag hero__icon--down"
+            />
+            {/* Calculadora: centro → arriba */}
+            <img
+              src="/images/coporate_finance.png"
+              alt="Calculadora"
+              className="hero__icon hero__icon--calc hero__icon--up"
+            />
+            {/* Alcancía: centro → abajo */}
+            <img
+              src="/images/educacion_financiera.png"
+              alt="Alcancía"
+              className="hero__icon hero__icon--pig hero__icon--down"
+            />
+            {/* Banco: centro → arriba */}
+            <img
+              src="/images/wealth_management.png"
+              alt="Banco"
+              className="hero__icon hero__icon--bank hero__icon--up"
+            />
           </div>
-        </div>
-      </div>
-
-      <div className="hero__scroll-indicator">
-        <span>Scroll</span>
-        <div className="hero__scroll-line">
-          <div className="hero__scroll-dot"></div>
         </div>
       </div>
     </section>
