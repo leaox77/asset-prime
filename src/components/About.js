@@ -26,93 +26,72 @@ const useScrollReveal = (ref, delay = 0) => {
 };
 
 const About = () => {
-  const titleRef = useRef(null);
-  const visionRef = useRef(null);
-  const misionRef = useRef(null);
-  const quoteRef = useRef(null);
+  const headerRef = useRef(null);
+  const cardsRef  = useRef(null);
+  const quoteRef  = useRef(null);
 
-  useScrollReveal(titleRef, 0);
-  useScrollReveal(visionRef, 100);
-  useScrollReveal(misionRef, 250);
-  useScrollReveal(quoteRef, 400);
+  useScrollReveal(headerRef, 0);
+  useScrollReveal(cardsRef,  150);
+  useScrollReveal(quoteRef,  300);
 
   return (
     <section className="about" id="nosotros">
       <div className="about__bg">
         <div className="about__glow"></div>
       </div>
+
       <div className="about__container">
-        <div className="about__header" ref={titleRef}>
-          <span className="about__tag">Quiénes Somos</span>
+
+        {/* ── HEADER ── */}
+        <div className="about__header" ref={headerRef}>
+          <div className="about__badge">
+            <span className="about__badge-dot"></span>
+            <span>Quiénes Somos</span>
+          </div>
           <h2 className="about__title">
-            Una firma de confianza para <br />
-            <span className="about__title-accent">inversores visionarios</span>
+            Propósito &amp; <span className="about__title-accent">Dirección</span>
           </h2>
-          <p className="about__desc">
-            Asset Prime nació con el propósito de democratizar el acceso a las mejores 
-            oportunidades de inversión, combinando la sofisticación del mercado financiero 
-            tradicional con la innovación de los activos digitales.
-          </p>
         </div>
 
-        <div className="about__cards">
-          <div className="about__card about__card--vision" ref={visionRef}>
-            <div className="about__card-image">
+        {/* ── CARDS ── */}
+        <div className="about__cards" ref={cardsRef}>
+
+          {/* VISIÓN */}
+          <div className="about__card">
+            <div className="about__card-bg">
               <img src="/images/imagen_vision.png" alt="Nuestra Visión" />
-              <div className="about__card-image-overlay">
-                <span>Nuestra Visión</span>
-              </div>
             </div>
-            <div className="about__card-body">
-              <div className="about__card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
-                </svg>
-              </div>
-              <h3>Visión</h3>
-              <p>
-                Ser la firma financiera líder en Latinoamérica, reconocida por transformar 
-                el patrimonio de nuestros clientes a través de soluciones innovadoras, 
+            <div className="about__card-label">Nuestra Visión</div>
+            <div className="about__card-content">
+              <h3 className="about__card-title">Visión</h3>
+              <p className="about__card-text">
+                Ser la firma financiera líder en Latinoamérica, reconocida por transformar
+                el patrimonio de nuestros clientes a través de soluciones innovadoras,
                 transparentes y orientadas al crecimiento sostenible.
               </p>
             </div>
           </div>
 
-          <div className="about__card about__card--mision" ref={misionRef}>
-            <div className="about__card-image">
+          {/* MISIÓN */}
+          <div className="about__card">
+            <div className="about__card-bg">
               <img src="/images/imagen_mision.png" alt="Nuestra Misión" />
-              <div className="about__card-image-overlay">
-                <span>Nuestra Misión</span>
-              </div>
             </div>
-            <div className="about__card-body">
-              <div className="about__card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
-                  <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1.5"/>
-                  <circle cx="12" cy="12" r="2" fill="currentColor"/>
-                </svg>
-              </div>
-              <h3>Misión</h3>
-              <p>
-                Ofrecer asesoramiento financiero integral y personalizado, maximizando el 
-                rendimiento de cada inversión con estrategias adaptadas al perfil único de 
-                cada cliente, bajo los más altos estándares éticos y profesionales.
+            <div className="about__card-label">Nuestra Misión</div>
+            <div className="about__card-content">
+              <h3 className="about__card-title">Misión</h3>
+              <p className="about__card-text">
+                Impulsar el desarrollo financiero de empresas, PYMES y personas mediante
+                asesoramiento estratégico, soluciones de inversión y herramientas
+                tecnológicas innovadoras, generando crecimiento sostenible, optimización
+                patrimonial y acceso a oportunidades financieras modernas con
+                transparencia, confianza y enfoque en resultados.
               </p>
             </div>
           </div>
+
         </div>
 
-        <div className="about__quote" ref={quoteRef}>
-          <div className="about__quote-line"></div>
-          <blockquote>
-            <span className="about__quote-mark">"</span>
-            Tu patrimonio merece el mejor cuidado. <br />
-            <strong>Nosotros somos ese cuidado.</strong>
-          </blockquote>
-          <div className="about__quote-line"></div>
-        </div>
       </div>
     </section>
   );
