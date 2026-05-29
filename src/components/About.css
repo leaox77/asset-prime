@@ -1,0 +1,254 @@
+.about {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+.about__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--black) 0%, var(--blue-deep) 50%, var(--black) 100%);
+}
+
+.about__glow {
+  position: absolute;
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(30, 79, 170, 0.12) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(60px);
+}
+
+.about__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.about__header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 80px;
+}
+
+.about__tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  padding: 6px 20px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+
+.about__title {
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+
+.about__title-accent {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about__desc {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--white-60);
+}
+
+/* Cards */
+.about__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 80px;
+}
+
+.about__card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about__card:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.about__card-image {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+
+.about__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.about__card:hover .about__card-image img {
+  transform: scale(0.95);
+}
+
+.about__card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(3, 8, 16, 0.8) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.about__card:hover .about__card-image-overlay {
+  opacity: 1;
+}
+
+.about__card-image-overlay span {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+.about__card-body {
+  padding: 32px;
+}
+
+.about__card-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.about__card-body h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.about__card-body p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--white-60);
+}
+
+/* Quote */
+.about__quote {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: center;
+}
+
+.about__quote-line {
+  flex: 1;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.4), transparent);
+}
+
+.about__quote blockquote {
+  text-align: center;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--white-80);
+  font-style: italic;
+  position: relative;
+  white-space: nowrap;
+}
+
+.about__quote-mark {
+  font-family: var(--font-special);
+  font-size: 60px;
+  color: var(--gold);
+  opacity: 0.3;
+  position: absolute;
+  top: -20px;
+  left: -30px;
+  line-height: 1;
+}
+
+.about__quote strong {
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about {
+    padding: 80px 0;
+  }
+
+  .about__cards {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .about__quote {
+    gap: 20px;
+  }
+
+  .about__quote blockquote {
+    white-space: normal;
+  }
+
+  .about__quote-line {
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about__container {
+    padding: 0 20px;
+  }
+
+  .about__card-image {
+    height: 200px;
+  }
+
+  .about__card-body {
+    padding: 24px;
+  }
+
+  .about__quote {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .about__quote-line {
+    width: 80px;
+    max-width: 80px;
+  }
+}

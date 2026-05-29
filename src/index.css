@@ -1,0 +1,83 @@
+@font-face {
+  font-family: 'BirdsOfParadise';
+  src: url('./fonts/birds-of-paradise.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C86A;
+  --gold-dark: #9A7A2E;
+  --gold-gradient: linear-gradient(135deg, #C9A84C 0%, #E8C86A 50%, #9A7A2E 100%);
+  --blue-deep: #0A1628;
+  --blue-dark: #0D1F3C;
+  --blue-mid: #1A3A6B;
+  --blue-accent: #1E4FAA;
+  --blue-bright: #2563EB;
+  --black: #030810;
+  --white: #FFFFFF;
+  --white-80: rgba(255,255,255,0.8);
+  --white-60: rgba(255,255,255,0.6);
+  --white-30: rgba(255,255,255,0.3);
+  --white-10: rgba(255,255,255,0.1);
+  --font-main: 'Montserrat', sans-serif;
+  --font-special: 'BirdsOfParadise', cursive;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-main);
+}
+
+ul {
+  list-style: none;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--black);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}

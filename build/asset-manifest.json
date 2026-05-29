@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.14626e06.css",
+    "main.js": "/static/js/main.8e63b6b6.js",
+    "static/media/birds-of-paradise.ttf": "/static/media/birds-of-paradise.25d70d11cc3eb733c394.ttf",
+    "index.html": "/index.html",
+    "main.14626e06.css.map": "/static/css/main.14626e06.css.map",
+    "main.8e63b6b6.js.map": "/static/js/main.8e63b6b6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.14626e06.css",
+    "static/js/main.8e63b6b6.js"
+  ]
+}
