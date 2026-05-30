@@ -1,13 +1,13 @@
 .about {
   position: relative;
-  padding: 120px 0;
+  padding: 90px 0;
   overflow: hidden;
 }
 
 .about__bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, var(--black) 0%, var(--blue-deep) 50%, var(--black) 100%);
+  background: #131d45;
 }
 
 .about__glow {
@@ -24,7 +24,7 @@
 .about__container {
   position: relative;
   z-index: 1;
-  max-width: 1440px;
+  max-width: 1530px;
   margin: 0 auto;
   padding: 0 60px;
 }
@@ -39,23 +39,23 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--gold);
 }
 
 .about__badge-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--gold);
   flex-shrink: 0;
 }
 
 .about__title {
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(36px, 5vw, 70px);
   font-weight: 900;
   line-height: 1.05;
   color: var(--white);
@@ -78,7 +78,7 @@
 /* ── SINGLE CARD ── */
 .about__card {
   position: relative;
-  height: 480px;
+  height: 630px;
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
@@ -167,14 +167,13 @@
   left: 0;
   right: 0;
   z-index: 2;
-  padding: 32px 28px;
+  padding: 32px 50px;
 }
 
 /* Título grande ("Visión" / "Misión") */
 .about__card-title {
-  font-family: var(--font-special);
-  font-size: clamp(36px, 4vw, 52px);
-  font-weight: 400;
+  font-size: clamp(36px, 4vw, 68px);
+  font-weight: 900;
   color: var(--white);
   margin-bottom: 0;
   line-height: 1;
@@ -190,9 +189,9 @@
 
 /* Texto descriptivo — oculto por defecto, aparece en hover */
 .about__card-text {
-  font-size: 13.5px;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--white);
   margin-top: 14px;
   max-height: 0;
   overflow: hidden;
