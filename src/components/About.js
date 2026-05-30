@@ -65,9 +65,10 @@ const About = () => {
             <div className="about__card-content">
               <h3 className="about__card-title">Visión</h3>
               <p className="about__card-text">
-                Ser la firma financiera líder en Latinoamérica, reconocida por transformar
-                el patrimonio de nuestros clientes a través de soluciones innovadoras,
-                transparentes y orientadas al crecimiento sostenible.
+                Ser la firma lider  de asesoramiento financiero y soluciones estrategicas en
+                Latinoamérica, reconocida por conectar finanzas, tecnologias y desarrollo
+                empresarial para transformar el crecimento economico de empresas y
+                ciudadanos con una vision moderna, sostenible e inclusiva.
               </p>
             </div>
           </div>
