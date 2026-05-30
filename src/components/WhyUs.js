@@ -1,88 +1,116 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './WhyUs.css';
 
-const pillars = [
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 2L3 8v6c0 6.6 4.7 12.8 11 14.3C20.3 26.8 25 20.6 25 14V8L14 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M9 14l3 3 7-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    title: 'Seguridad Total',
-    desc: 'Tu patrimonio protegido con los más altos estándares de seguridad y cumplimiento regulatorio.',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="11" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M14 8v6l4 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    title: 'Disponibilidad 24/7',
-    desc: 'Monitoreo constante de tus inversiones y soporte disponible cuando más lo necesitas.',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M4 22L10 16l4 4 4-6 6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M22 8h-6V2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M22 2l-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    title: 'Rendimientos Reales',
-    desc: 'Estrategias con track record probado. Tu dinero trabajando de forma eficiente y transparente.',
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="9" r="4" stroke="currentColor" strokeWidth="1.5"/>
-        <path d="M5 24c0-5 4-9 9-9s9 4 9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-    title: 'Equipo Experto',
-    desc: 'Profesionales con décadas de experiencia en mercados financieros globales y activos digitales.',
-  },
+const assetItems = [
+  'Integramos asesoramiento financiero, tecnología y análisis estratégico en una sola firma moderna, sostenible y orientada al crecimiento regional.',
+  'Priorizamos transparencia, compliance y gestión responsable del riesgo para generar confianza sólida en clientes empresariales y patrimoniales.',
+  'Desarrollamos soluciones personalizadas para empresas, PYMES y personas, adaptando estrategias financieras según necesidades reales y objetivos específicos.',
+];
+
+const compItems = [
+  'Muchas empresas ofrecen únicamente productos financieros aislados, sin integrar tecnología, estrategia corporativa ni acompañamiento sostenible.',
+  'Parte del mercado mantiene modelos comerciales tradicionales con menor enfoque en compliance, educación financiera y gestión integral del riesgo.',
+  'Competidores suelen trabajar con servicios estandarizados limitando personalización y acompañamiento estratégico continuo para sus clientes.',
 ];
 
 const WhyUs = () => {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const headerRef = useRef(null);
+  const tableRef  = useRef(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+    const els = [headerRef.current, tableRef.current];
+    els.forEach((el, i) => {
+      if (!el) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(40px)';
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, i * 150);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(el);
+      return () => observer.disconnect();
+    });
   }, []);
 
   return (
-    <section className="whyus" id="por-que" ref={ref}>
+    <section className="whyus" id="por-que">
       <div className="whyus__container">
-        <div className={`whyus__header ${visible ? 'revealed' : ''}`}>
-          <span className="whyus__tag">Por Qué Elegirnos</span>
+
+        {/* ── HEADER ── */}
+        <div className="whyus__header" ref={headerRef}>
+          <div className="whyus__badge">
+            <span className="whyus__badge-dot"></span>
+            <span>Por Qué Elegirnos</span>
+          </div>
           <h2 className="whyus__title">
-            La diferencia que hace <br />
-            <span className="whyus__title-accent">Asset Prime</span>
+            <span className="whyus__title-white">Tabla </span>
+            <span className="whyus__title-gold">Comparativa</span>
           </h2>
+          <p className="whyus__subtitle">
+            No somos una firma más. Nuestra propuesta integra lo que la competencia ofrece por separado
+          </p>
         </div>
 
-        <div className="whyus__pillars">
-          {pillars.map((p, i) => (
-            <div
-              key={i}
-              className={`whyus__pillar ${visible ? 'revealed' : ''}`}
-              style={{ transitionDelay: `${i * 120}ms` }}
-            >
-              <div className="whyus__pillar-icon">{p.icon}</div>
-              <h3>{p.title}</h3>
-              <p>{p.desc}</p>
+        {/* ── TABLA ── */}
+        <div className="whyus__table" ref={tableRef}>
+
+          {/* Línea superior */}
+          <div className="whyus__table-topline"></div>
+
+          {/* Cabeceras */}
+          <div className="whyus__table-head">
+            <div className="whyus__col whyus__col--left">
+              <h3 className="whyus__col-title whyus__col-title--gold">Asset Prime</h3>
             </div>
-          ))}
+            <div className="whyus__vs-spacer"></div>
+            <div className="whyus__col whyus__col--right">
+              <h3 className="whyus__col-title whyus__col-title--white">La Competencia</h3>
+            </div>
+          </div>
+
+          {/* Línea bajo cabeceras */}
+          <div className="whyus__table-line"></div>
+
+          {/* Filas */}
+          <div className="whyus__table-body">
+            <div className="whyus__col whyus__col--left">
+              {assetItems.map((text, i) => (
+                <div className="whyus__item" key={i}>
+                  <span className="whyus__dot whyus__dot--gold"></span>
+                  <p>{text}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* VS central */}
+            <div className="whyus__vs">
+              <div className="whyus__vs-vline"></div>
+              <span className="whyus__vs-text">VS</span>
+              <div className="whyus__vs-vline"></div>
+            </div>
+
+            <div className="whyus__col whyus__col--right">
+              {compItems.map((text, i) => (
+                <div className="whyus__item" key={i}>
+                  <span className="whyus__dot whyus__dot--blue"></span>
+                  <p>{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Línea inferior */}
+          <div className="whyus__table-line"></div>
+
         </div>
       </div>
     </section>

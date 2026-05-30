@@ -1,0 +1,247 @@
+.cta {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 120px 0;
+}
+
+/* Mismo fondo que el hero */
+.cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: #030611;
+  background-image:
+    radial-gradient(circle at 75% 50%, #384187 0%, transparent 65%),
+    radial-gradient(circle at 10% 20%, #0d1535 0%, transparent 70%);
+}
+
+.cta__grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 2px, transparent 1px);
+  background-size: 65px 65px;
+  z-index: 1;
+}
+
+.cta__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 20% 50%,
+    rgba(3, 8, 16, 0.35) 0%,
+    transparent 70%
+  );
+  z-index: 2;
+}
+
+/* Monedas flotantes */
+.cta__coin {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.cta__coin img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+}
+
+.cta__coin--btc {
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: ctaCoinFloat1 5s ease-in-out infinite;
+}
+
+.cta__coin--eth {
+  right: 2%;
+  bottom: 10%;
+  animation: ctaCoinFloat2 5.5s ease-in-out infinite;
+}
+
+@keyframes ctaCoinFloat1 {
+  0%, 100% { transform: translateY(-50%) rotate(-8deg); }
+  50%       { transform: translateY(calc(-50% - 18px)) rotate(0deg); }
+}
+
+@keyframes ctaCoinFloat2 {
+  0%, 100% { transform: translateY(0) rotate(8deg); }
+  50%       { transform: translateY(-18px) rotate(0deg); }
+}
+
+/* Contenido central */
+.cta__container {
+  position: relative;
+  z-index: 4;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* Badge */
+.cta__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.cta__badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* Título */
+.cta__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 28px;
+  line-height: 1;
+}
+
+.cta__title-white {
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -1px;
+  line-height: 1.0;
+  text-transform: uppercase;
+}
+
+.cta__title-gold {
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: -1px;
+  line-height: 1.0;
+  text-transform: uppercase;
+}
+
+/* Subtítulo */
+.cta__subtitle {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--white-60);
+  max-width: 580px;
+  margin: 0 auto 40px;
+}
+
+/* Botones — mismos del hero */
+.cta__btn-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.cta__btn--primary {
+  background: var(--gold-gradient);
+  color: var(--black);
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
+  padding: 13px 48px;
+}
+
+.cta__btn--primary:hover {
+  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.55);
+  transform: translateY(-2px);
+}
+
+.cta__btn--secondary {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(201, 168, 76, 0.5);
+  padding: 13px 40px;
+}
+
+.cta__btn--secondary:hover {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.08);
+  color: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cta__coin img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .cta__coin--btc {
+    left: -20px;
+  }
+
+  .cta__coin--eth {
+    right: -20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cta {
+    padding: 80px 0;
+  }
+
+  .cta__container {
+    padding: 0 20px;
+  }
+
+  .cta__coin img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cta__btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta__btn {
+    width: 100%;
+  }
+}

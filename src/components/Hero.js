@@ -27,7 +27,7 @@ const Hero = () => {
   return (
     <section className="hero" id="inicio">
       <div className="hero__bg">
-        <div className="hero__grid"></div>
+        <div className="hero__bg-light-beam"></div> <div className="hero__grid"></div>
         <div className="hero__overlay"></div>
         <div className="hero__glow hero__glow--left"></div>
         <div className="hero__glow hero__glow--right"></div>

@@ -8,6 +8,8 @@ import WhyUs from './components/WhyUs';
 import Crypto from './components/Crypto';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Clients from './components/Clients';
+import CallToAction from './components/CallToAction';
 import './App.css';
 
 function App() {
@@ -17,11 +19,13 @@ function App() {
       <main>
         <Hero />
         <Ticker />
-        <About />
         <Services />
+        <Clients />
+        <About />
         <WhyUs />
-        <Crypto />
-        <Contact />
+        <CallToAction />
+        {/* <Crypto /> */}
+        {/* <Contact /> */}
       </main>
       <Footer />
     </div>

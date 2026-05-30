@@ -1,92 +1,47 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Services.css';
 
 const services = [
   {
     id: 1,
-    img: '/images/wealth_management.png',
-    title: 'Wealth Management',
-    shortTitle: 'Gestión Patrimonial',
-    desc: 'Administración integral de tu patrimonio con estrategias personalizadas para maximizar rendimiento y proteger tu capital a largo plazo.',
-    tag: 'Premium',
+    number: '01',
+    category: 'Acompañamiento',
+    img: '/images/asesoramiento_financiero.png',
+    titleLine1: 'Asesoramiento',
+    titleLine2: 'Financiero',
+    desc: 'Planificación estratégica para optimizar patrimonio, liquidez y crecimiento financiero de personas y empresas. Enfoque personalizado y orientado a resultados.',
   },
   {
     id: 2,
-    img: '/images/educacion_financiera.png',
-    title: 'Educación Financiera',
-    shortTitle: 'Formación & Conocimiento',
-    desc: 'Programas formativos diseñados para potenciar tu inteligencia financiera, desde fundamentos hasta estrategias avanzadas de inversión.',
-    tag: 'Formación',
+    number: '02',
+    category: 'Experiencia',
+    img: '/images/wealth_management.png',
+    titleLine1: 'Wealth',
+    titleLine2: 'Management',
+    desc: 'Gestión patrimonial personalizada orientada a proteger y potenciar inversiones de largo plazo. Estructuras de inversión modernas y diversificadas.',
   },
   {
     id: 3,
+    number: '03',
+    category: 'Consolidación',
     img: '/images/coporate_finance.png',
-    title: 'Corporate Finance',
-    shortTitle: 'Finanzas Corporativas',
+    titleLine1: 'Corporate',
+    titleLine2: 'Finance',
     desc: 'Soluciones financieras estratégicas para empresas: reestructuración, fusiones, adquisiciones y optimización del capital corporativo.',
-    tag: 'Empresas',
   },
   {
     id: 4,
-    img: '/images/asesoramiento_financiero.png',
-    title: 'Asesoramiento Financiero',
-    shortTitle: 'Consultoría Personalizada',
-    desc: 'Asesoría financiera personalizada con expertos dedicados a entender tu situación única y construir el camino hacia tus objetivos.',
-    tag: 'Consultoría',
+    number: '04',
+    category: 'Crecimiento',
+    img: '/images/educacion_financiera.png',
+    titleLine1: 'Educación',
+    titleLine2: 'Financiera',
+    desc: 'Programas formativos para potenciar tu inteligencia financiera, desde fundamentos hasta estrategias avanzadas de inversión.',
   },
 ];
 
-const ServiceCard = ({ service, index }) => {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(40px)';
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-          }, index * 100);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [index]);
-
-  return (
-    <div className="service-card" ref={ref}>
-      <div className="service-card__image-wrap">
-        <img src={service.img} alt={service.title} className="service-card__img" />
-        <div className="service-card__overlay">
-          <p className="service-card__overlay-text">{service.desc}</p>
-          <a href="#contacto" className="service-card__overlay-btn">
-            Saber Más
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
-        </div>
-        <span className="service-card__tag">{service.tag}</span>
-      </div>
-      <div className="service-card__body">
-        <h3 className="service-card__title">{service.title}</h3>
-        <p className="service-card__short">{service.shortTitle}</p>
-        <div className="service-card__divider"></div>
-        <p className="service-card__desc">{service.desc}</p>
-      </div>
-    </div>
-  );
-};
-
 const Services = () => {
+  const [active, setActive] = useState(0);
   const headerRef = useRef(null);
 
   useEffect(() => {
@@ -112,19 +67,55 @@ const Services = () => {
   return (
     <section className="services" id="servicios">
       <div className="services__container">
+
         <div className="services__header" ref={headerRef}>
-          <span className="services__tag">Nuestros Servicios</span>
+          <div className="services__badge">
+            <span className="services__badge-dot"></span>
+            <span>Lo Que Hacemos</span>
+          </div>
           <h2 className="services__title">
-            Soluciones diseñadas para <br />
-            <span className="services__title-accent">cada etapa de tu camino</span>
+            Nuestros <span className="services__title-accent">Servicios</span>
           </h2>
+          <p className="services__subtitle">
+            Soluciones integrales que combinan finanzas tradicionales, tecnología y<br />
+            planificación para generar valor real y sostenible
+          </p>
         </div>
 
         <div className="services__grid">
           {services.map((s, i) => (
-            <ServiceCard key={s.id} service={s} index={i} />
+            <div
+              key={s.id}
+              className={`svc-card ${active === i ? 'svc-card--active' : ''}`}
+              onMouseEnter={() => setActive(i)}
+            >
+              {/* Luz diagonal */}
+              <div className="svc-card__light"></div>
+
+              {/* Badge número + categoría */}
+              <div className="svc-card__badge">
+                <span className="svc-card__dot"></span>
+                <span className="svc-card__number">{s.number}</span>
+                <span className="svc-card__category">{s.category.toUpperCase()}</span>
+              </div>
+
+              {/* Imagen 3D */}
+              <div className="svc-card__img-wrap">
+                <img src={s.img} alt={s.titleLine1} className="svc-card__img" />
+              </div>
+
+              {/* Texto inferior */}
+              <div className="svc-card__body">
+                <h3 className="svc-card__title">
+                  <span className="svc-card__title-white">{s.titleLine1}</span>
+                  <span className="svc-card__title-gold">{s.titleLine2}</span>
+                </h3>
+                <p className="svc-card__desc">{s.desc}</p>
+              </div>
+            </div>
           ))}
         </div>
+
       </div>
     </section>
   );

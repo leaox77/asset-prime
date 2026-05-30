@@ -6,20 +6,18 @@
   justify-content: center;
   overflow: hidden;
   padding-top: 80px;
+  padding-bottom: 30px;
 }
 
 .hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-color: #030611; 
+  background-color: var(--blue-background); 
   
   /* Capas de luz radiales independientes (solo afectan al color) */
-  background-image: 
-    /* Luz principal: Derecha (detrás del logo) */
-    radial-gradient(circle at 75% 50%, #384187 0%, transparent 65%),
-    
-    /* Luz secundaria: Izquierda (detrás del texto) */
+  background-image:
+    radial-gradient(circle at 75% 50%, #384187 0%, transparent 50%),
     radial-gradient(circle at 10% 20%, #0d1535 0%, transparent 70%);
 }
 .hero__grid {
@@ -34,7 +32,24 @@
   z-index: 1;
   
 }
+.hero__bg-light-beam {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
 
+  /* ── HAZ DE LUZ PREMIUM ENCAJONADO ── */
+  background: linear-gradient(
+    80deg,
+    #0c1434 0%,                  /* 1. Origen Oscuro: Esquina estricta en penumbra */
+    #0c1434 12%,                 /* Anclaje oscuro: Evita que la luz sangre hacia la esquina sup-der */
+    #0c1434 30%,
+    #3b438d 58%, /* 2. Transición rápida: Nace el haz de luz vibrante */
+     /* 3. Haz Central: Mantiene el cuerpo de la luz cruzando el centro */
+    #262f66 70%,              /* 4. Cierre Oscuro: La luz muere drásticamente aquí */
+    #0c1434 100%                 /* Final Oscuro: Esquina inferior-derecha e inf-izq en penumbra absoluta */
+  );
+}
 .hero__overlay {
   position: absolute;
   inset: 0;
@@ -69,6 +84,23 @@
   animation: glowPulse 6s ease-in-out infinite alternate-reverse;
 }
 
+.hero__light {
+  position: absolute;
+  inset: 0;
+  /* Lo ideal es z-index: 1 para estar al nivel del fondo o justo debajo del grid. 
+     Si quieres que tape un poco el grid, ponle z-index: 2 */
+  z-index: 1; 
+  pointer-events: none;
+  
+  background: linear-gradient(
+    130deg,
+    rgba(55, 95, 175, 0.40) 0%,    /* Destello intenso en el top-left */
+    rgba(55, 95, 175, 0.18) 25%,   /* Se expande suavemente */
+    rgba(10, 22, 60, 0.0)   55%,   /* Se desvanece por completo antes de la mitad */
+    transparent 100%
+  );
+}
+
 @keyframes glowPulse {
   from { opacity: 0.1; transform: scale(1); }
   to   { opacity: 0.2; transform: scale(1.1); }
@@ -94,12 +126,13 @@
   align-items: center;
   gap: 10px;
   border: 1px solid rgba(201, 168, 76, 0.5);
-  padding: 15px 18px;
+  padding: 12px 18px;
   border-radius: 3px;
+  margin-top: 58px;
   margin-bottom: 32px;
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -122,13 +155,13 @@
 .hero__title {
   display: flex;
   flex-direction: column;
-  gap: 0px;
-  margin-bottom: 28px;
-  line-height: 1;
+  gap: 6px;
+  margin-bottom: 10px;
+  line-height: 1.2;
+  font-size: clamp(52px, 7vw, 100px);
 }
 
 .hero__title-white {
-  font-size: clamp(52px, 7vw, 88px);
   font-weight: 900;
   color: var(--white);
   letter-spacing: -1px;
@@ -137,7 +170,6 @@
 }
 
 .hero__title-gold {
-  font-size: clamp(52px, 7vw, 88px);
   font-weight: 900;
   color: var(--gold);
   letter-spacing: -1px;
@@ -147,7 +179,6 @@
 
 .hero__title-script {
   font-family: var(--font-special);
-  font-size: clamp(44px, 6vw, 76px);
   font-weight: 400;
   background: var(--white);
   -webkit-background-clip: text;
@@ -159,11 +190,11 @@
 
 /* ── SUBTITLE ── */
 .hero__subtitle {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.8;
-  color: var(--white-60);
-  max-width: 460px;
+  font-size: 15px;
+  font-weight: 200;
+  line-height: 1.1;
+  color: var(--white);
+  max-width: 500px;
   margin-bottom: 36px;
 }
 
@@ -171,7 +202,7 @@
 .hero__cta-group {
   display: flex;
   gap: 16px;
-  margin-bottom: 48px;
+  margin-bottom: 30px;
   flex-wrap: wrap;
 }
 
@@ -230,11 +261,11 @@
 }
 
 .hero__region-sub {
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--white-60);
+  color: var(--white);
 }
 
 /* ── VISUAL SIDE ── */

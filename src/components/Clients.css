@@ -1,0 +1,244 @@
+.clients {
+  position: relative;
+  padding: 120px 0;
+  background: var(--blue-background);
+  overflow: hidden;
+}
+
+.clients__container {
+  max-width: 1390px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+/* ── BADGE ── */
+.clients__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.clients__badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ── TÍTULO IZQUIERDA ── */
+.clients__title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  margin-bottom: 40px;
+  gap: 0;
+}
+
+.clients__title-white {
+  font-size: clamp(40px, 5vw, 59px);
+  font-weight: 900;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.clients__title-gold {
+  font-size: clamp(40px, 5vw, 59px);
+  font-weight: 900;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+/* ── CAJA DE ESTADÍSTICAS ── */
+
+.clients__left {
+  min-height: 700px; /* Asegura un alto mínimo, pero puede crecer más si es necesario */
+}
+
+.clients__box {
+  border: 1px solid #d4a843;
+  border-radius: 4px;
+  padding: 32px 28px 28px;
+  background: #1b265c;
+  max-width: 570px;
+  max-height: 600px;
+  min-height: 370px;
+}
+
+.clients__stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 30px;
+  margin-top: 8px;
+}
+
+.clients__stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 0;
+  
+}
+
+.clients__stat-number {
+  font-size: clamp(32px, 4vw, 59px);
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.clients__stat-label {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.clients__stat-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--white);
+  margin: 0 20px;
+  flex-shrink: 0;
+  min-height: 170px;
+}
+
+.clients__box-line {
+  height: 1px;
+  background: var(--white);
+  margin-bottom: 24px;
+}
+
+.clients__box-desc {
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--gold);
+  opacity: 0.85;
+  padding-left: 21px;
+  padding-top: 8px;
+}
+
+/* ── COLUMNA DERECHA ── */
+.clients__title-right {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  margin-bottom: 20px;
+  gap: 5px;
+}
+
+.clients__title-white-lg {
+  font-size: clamp(36px, 4.5vw, 59px);
+  font-weight: 900;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.clients__title-script {
+  font-family: var(--font-special);
+  font-size: clamp(36px, 4.5vw, 59px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
+
+.clients__right-desc {
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 20px;
+  max-width: 520px;
+}
+
+
+/* ── SEGMENTOS ── */
+.clients__segments {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.clients__segment {
+  padding: 20px 24px;
+  padding-right: 32px;
+  border: none;
+  background: #111a41;
+  border-radius: 4px;
+  max-width: 570px;
+}
+
+.clients__segment:last-child {
+  border-bottom: none;
+}
+
+.clients__segment-line {
+  display: none;
+}
+
+.clients__segment-title {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.clients__segment-desc {
+  font-size: 13.5px;
+  line-height: 1.2;
+  color: var(--white);
+  font-weight: 300;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .clients__container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .clients {
+    padding: 80px 0;
+  }
+
+  .clients__container {
+    padding: 0 20px;
+  }
+
+  .clients__stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .clients__stat-divider {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+  }
+}

@@ -6,7 +6,7 @@
 }
 
 :root {
-  --gold: #C9A84C;
+  --gold: #d4a843;
   --gold-light: #E8C86A;
   --gold-dark: #9A7A2E;
   --gold-gradient: linear-gradient(135deg, #C9A84C 0%, #E8C86A 50%, #9A7A2E 100%);
@@ -15,6 +15,7 @@
   --blue-mid: #1A3A6B;
   --blue-accent: #1E4FAA;
   --blue-bright: #2563EB;
+  --blue-background: #0d1535;
   --black: #030810;
   --white: #FFFFFF;
   --white-80: rgba(255,255,255,0.8);
