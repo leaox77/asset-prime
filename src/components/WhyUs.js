@@ -15,29 +15,35 @@ const compItems = [
 
 const WhyUs = () => {
   const headerRef = useRef(null);
-  const tableRef  = useRef(null);
+  const tableRef = useRef(null);
 
   useEffect(() => {
     const els = [headerRef.current, tableRef.current];
+
     els.forEach((el, i) => {
       if (!el) return;
+
       el.style.opacity = '0';
       el.style.transform = 'translateY(40px)';
+
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
             setTimeout(() => {
-              el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+              el.style.transition =
+                'opacity .8s ease, transform .8s ease';
+
               el.style.opacity = '1';
               el.style.transform = 'translateY(0)';
             }, i * 150);
+
             observer.disconnect();
           }
         },
         { threshold: 0.1 }
       );
+
       observer.observe(el);
-      return () => observer.disconnect();
     });
   }, []);
 
@@ -45,73 +51,87 @@ const WhyUs = () => {
     <section className="whyus" id="por-que">
       <div className="whyus__container">
 
-        {/* ── HEADER ── */}
+        {/* HEADER */}
+
         <div className="whyus__header" ref={headerRef}>
           <div className="whyus__badge">
             <span className="whyus__badge-dot"></span>
             <span>Por Qué Elegirnos</span>
           </div>
+
           <h2 className="whyus__title">
             <span className="whyus__title-white">Tabla </span>
             <span className="whyus__title-gold">Comparativa</span>
           </h2>
+
           <p className="whyus__subtitle">
-            No somos una firma más. Nuestra propuesta integra lo que la competencia ofrece por separado
+            No somos una firma más. Nuestra propuesta integra lo que la competencia ofrece por separado.
           </p>
         </div>
 
-        {/* ── TABLA ── */}
-        <div className="whyus__table" ref={tableRef}>
+        {/* TABLA */}
 
-          {/* Línea superior */}
-          <div className="whyus__table-topline"></div>
+        <div className="whyus__table-wrapper" ref={tableRef}>
+          <table className="whyus__table">
 
-          {/* Cabeceras */}
-          <div className="whyus__table-head">
-            <div className="whyus__col whyus__col--left">
-              <h3 className="whyus__col-title whyus__col-title--gold">Asset Prime</h3>
-            </div>
-            <div className="whyus__vs-spacer"></div>
-            <div className="whyus__col whyus__col--right">
-              <h3 className="whyus__col-title whyus__col-title--white">La Competencia</h3>
-            </div>
-          </div>
+            <thead>
+              <tr>
+                <th className="whyus__head whyus__head--gold">
+                  ASSET PRIME
+                </th>
 
-          {/* Línea bajo cabeceras */}
-          <div className="whyus__table-line"></div>
+                <th className="whyus__vs-col"></th>
 
-          {/* Filas */}
-          <div className="whyus__table-body">
-            <div className="whyus__col whyus__col--left">
-              {assetItems.map((text, i) => (
-                <div className="whyus__item" key={i}>
-                  <span className="whyus__dot whyus__dot--gold"></span>
-                  <p>{text}</p>
-                </div>
-              ))}
-            </div>
+                <th className="whyus__head">
+                  LA COMPETENCIA
+                </th>
+              </tr>
+            </thead>
 
-            {/* VS central */}
-            <div className="whyus__vs">
-              <div className="whyus__vs-vline"></div>
-              <span className="whyus__vs-text">VS</span>
-              <div className="whyus__vs-vline"></div>
-            </div>
+            <tbody>
+              <tr>
 
-            <div className="whyus__col whyus__col--right">
-              {compItems.map((text, i) => (
-                <div className="whyus__item" key={i}>
-                  <span className="whyus__dot whyus__dot--blue"></span>
-                  <p>{text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+                {/* IZQUIERDA */}
 
-          {/* Línea inferior */}
-          <div className="whyus__table-line"></div>
+                <td className="whyus__content">
+                  {assetItems.map((item, index) => (
+                    <div className="whyus__item" key={index}>
+                      <span className="whyus__dot whyus__dot--gold"></span>
+                      <p>{item}</p>
+                    </div>
+                  ))}
+                </td>
 
+                {/* VS */}
+
+                <td className="whyus__vs-cell">
+                  <span className="whyus__vs">VS</span>
+                </td>
+
+                {/* DERECHA */}
+
+                <td className="whyus__content">
+                  {compItems.map((item, index) => (
+                    <div className="whyus__item" key={index}>
+                      <span className="whyus__dot whyus__dot--blue"></span>
+                      <p>{item}</p>
+                    </div>
+                  ))}
+                </td>
+
+              </tr>
+            </tbody>
+            <tr>
+  <td></td>
+
+  <td className="whyus__table-footer"></td>
+
+  <td></td>
+</tr>
+
+          </table>
         </div>
+
       </div>
     </section>
   );
