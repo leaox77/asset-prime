@@ -33,7 +33,14 @@
   height: 10px;
   border-radius: 50%;
   background: var(--gold, #d4a843);
+  animation: dotPulse 2s ease-in-out infinite;
 }
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
 
 .whyus__title {
   font-size: clamp(32px, 5vw, 60px);

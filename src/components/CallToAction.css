@@ -1,6 +1,6 @@
 .cta {
   position: relative;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,8 +51,8 @@
 }
 
 .cta__coin img {
-  width: 180px;
-  height: 180px;
+  width: 400px;
+  height: 400px;
   object-fit: contain;
   filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
 }
@@ -68,14 +68,14 @@
 
 .cta__coin--btc {
   left: 2%;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   animation: ctaCoinFloat1 5s ease-in-out infinite;
 }
 
 .cta__coin--eth {
   right: 2%;
-  bottom: 10%;
+  bottom: 7%;
   animation: ctaCoinFloat2 5.5s ease-in-out infinite;
 }
 
@@ -140,16 +140,16 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 28px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--gold, #d4a843);
 }
 
 .cta__badge-dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--gold, #d4a843);
   flex-shrink: 0;
@@ -168,10 +168,11 @@
   gap: 5px;
   margin-bottom: 28px;
   line-height: 1.1;
+  min-width : 1100px;
 }
 
 .cta__title-white {
-  font-size: clamp(40px, 7vw, 88px);
+  font-size: clamp(40px, 7vw, 92px);
   font-weight: 900;
   color: var(--white, #ffffff);
   letter-spacing: -1px;
@@ -180,7 +181,7 @@
 }
 
 .cta__title-gold {
-  font-size: clamp(40px, 7vw, 88px);
+  font-size: clamp(40px, 7vw, 92px);
   font-weight: 900;
   color: var(--gold, #d4a843);
   letter-spacing: -1px;
@@ -191,11 +192,11 @@
 
 /* Subtítulo */
 .cta__subtitle {
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 580px;
+  color: var(--white);
+  max-width: 710px;
   margin: 0 auto 40px;
 }
 
