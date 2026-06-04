@@ -24,8 +24,8 @@ function App() {
         <About />
         <WhyUs />
         <CallToAction />
-        {/* <Crypto /> */}
-        {/* <Contact /> */}
+        {<Crypto />}
+        {<Contact />}
       </main>
       <Footer />
     </div>

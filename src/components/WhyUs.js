@@ -30,9 +30,7 @@ const WhyUs = () => {
         ([entry]) => {
           if (entry.isIntersecting) {
             setTimeout(() => {
-              el.style.transition =
-                'opacity .8s ease, transform .8s ease';
-
+              el.style.transition = 'opacity .8s ease, transform .8s ease';
               el.style.opacity = '1';
               el.style.transform = 'translateY(0)';
             }, i * 150);
@@ -52,7 +50,6 @@ const WhyUs = () => {
       <div className="whyus__container">
 
         {/* HEADER */}
-
         <div className="whyus__header" ref={headerRef}>
           <div className="whyus__badge">
             <span className="whyus__badge-dot"></span>
@@ -69,30 +66,18 @@ const WhyUs = () => {
           </p>
         </div>
 
-        {/* TABLA */}
-
+        {/* TABLA - Desktop */}
         <div className="whyus__table-wrapper" ref={tableRef}>
-          <table className="whyus__table">
-
+          <table className="whyus__table whyus__table--desktop">
             <thead>
               <tr>
-                <th className="whyus__head whyus__head--gold">
-                  ASSET PRIME
-                </th>
-
+                <th className="whyus__head whyus__head--gold">ASSET PRIME</th>
                 <th className="whyus__vs-col"></th>
-
-                <th className="whyus__head">
-                  LA COMPETENCIA
-                </th>
+                <th className="whyus__head">LA COMPETENCIA</th>
               </tr>
             </thead>
-
             <tbody>
               <tr>
-
-                {/* IZQUIERDA */}
-
                 <td className="whyus__content">
                   {assetItems.map((item, index) => (
                     <div className="whyus__item" key={index}>
@@ -101,15 +86,9 @@ const WhyUs = () => {
                     </div>
                   ))}
                 </td>
-
-                {/* VS */}
-
                 <td className="whyus__vs-cell">
                   <span className="whyus__vs">VS</span>
                 </td>
-
-                {/* DERECHA */}
-
                 <td className="whyus__content">
                   {compItems.map((item, index) => (
                     <div className="whyus__item" key={index}>
@@ -118,18 +97,40 @@ const WhyUs = () => {
                     </div>
                   ))}
                 </td>
-
               </tr>
             </tbody>
-            <tr>
-  <td></td>
-
-  <td className="whyus__table-footer"></td>
-
-  <td></td>
-</tr>
-
+            <tfoot>
+              <tr>
+                <td className="whyus__table-footer"></td>
+                <td className="whyus__table-footer"></td>
+                <td className="whyus__table-footer"></td>
+              </tr>
+            </tfoot>
           </table>
+
+          {/* TABLA - Mobile (Card layout) */}
+          <div className="whyus__mobile-cards">
+            {assetItems.map((assetItem, index) => (
+              <div className="whyus__card" key={index}>
+                <div className="whyus__card-header">
+                  <span className="whyus__card-badge asset">ASSET PRIME</span>
+                  <span className="whyus__vs-mobile">VS</span>
+                  <span className="whyus__card-badge comp">COMPETENCIA</span>
+                </div>
+                <div className="whyus__card-content">
+                  <div className="whyus__card-item asset-item">
+                    <span className="whyus__dot whyus__dot--gold"></span>
+                    <p>{assetItem}</p>
+                  </div>
+                  <div className="whyus__card-divider"></div>
+                  <div className="whyus__card-item comp-item">
+                    <span className="whyus__dot whyus__dot--blue"></span>
+                    <p>{compItems[index]}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>

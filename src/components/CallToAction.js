@@ -31,13 +31,21 @@ const CallToAction = () => {
       <div className="cta__grid" />
       <div className="cta__overlay" />
 
-      {/* Moneda BTC izquierda */}
-      <div className="cta__coin cta__coin--btc">
+      {/* Moneda BTC izquierda - Solo visible en desktop */}
+      <div className="cta__coin cta__coin--btc cta__coin--desktop">
         <img src="/images/bitcoin.png" alt="Bitcoin" />
       </div>
 
-      {/* Moneda ETH derecha */}
-      <div className="cta__coin cta__coin--eth">
+      {/* Moneda ETH derecha - Solo visible en desktop */}
+      <div className="cta__coin cta__coin--eth cta__coin--desktop">
+        <img src="/images/etherium.png" alt="Ethereum" />
+      </div>
+
+      {/* Monedas móviles más pequeñas */}
+      <div className="cta__coin cta__coin--btc-mobile cta__coin--mobile">
+        <img src="/images/bitcoin.png" alt="Bitcoin" />
+      </div>
+      <div className="cta__coin cta__coin--eth-mobile cta__coin--mobile">
         <img src="/images/etherium.png" alt="Ethereum" />
       </div>
 
@@ -67,7 +75,7 @@ const CallToAction = () => {
             Agendar Consulta Gratuita
           </a>
           <a href="#nosotros" className="cta__btn cta__btn--secondary">
-            Conocer Más Sobre Nostros
+            Conocer Más Sobre Nosotros
           </a>
         </div>
       </div>

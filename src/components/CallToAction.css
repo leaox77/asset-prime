@@ -4,8 +4,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow-x: hidden;
   padding: 120px 0;
+  width: 100%;
 }
 
 /* Mismo fondo que el hero */
@@ -42,7 +43,7 @@
   z-index: 2;
 }
 
-/* Monedas flotantes */
+/* Monedas flotantes base */
 .cta__coin {
   position: absolute;
   z-index: 3;
@@ -53,7 +54,16 @@
   width: 180px;
   height: 180px;
   object-fit: contain;
-  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+}
+
+/* Monedas desktop */
+.cta__coin--desktop {
+  display: block;
+}
+
+.cta__coin--mobile {
+  display: none;
 }
 
 .cta__coin--btc {
@@ -69,14 +79,45 @@
   animation: ctaCoinFloat2 5.5s ease-in-out infinite;
 }
 
+/* Monedas móviles */
+.cta__coin--btc-mobile {
+  left: -30px;
+  top: 15%;
+  animation: ctaCoinFloatMobile1 4s ease-in-out infinite;
+}
+
+.cta__coin--eth-mobile {
+  right: -30px;
+  bottom: 15%;
+  animation: ctaCoinFloatMobile2 4.5s ease-in-out infinite;
+}
+
+.cta__coin--btc-mobile img,
+.cta__coin--eth-mobile img {
+  width: 100px;
+  height: 100px;
+}
+
+/* Animaciones desktop */
 @keyframes ctaCoinFloat1 {
   0%, 100% { transform: translateY(-50%) rotate(-8deg); }
-  50%       { transform: translateY(calc(-50% - 18px)) rotate(0deg); }
+  50% { transform: translateY(calc(-50% - 18px)) rotate(0deg); }
 }
 
 @keyframes ctaCoinFloat2 {
   0%, 100% { transform: translateY(0) rotate(8deg); }
-  50%       { transform: translateY(-18px) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(0deg); }
+}
+
+/* Animaciones móviles */
+@keyframes ctaCoinFloatMobile1 {
+  0%, 100% { transform: translateX(0) rotate(-5deg); }
+  50% { transform: translateX(10px) rotate(0deg); }
+}
+
+@keyframes ctaCoinFloatMobile2 {
+  0%, 100% { transform: translateX(0) rotate(5deg); }
+  50% { transform: translateX(-10px) rotate(0deg); }
 }
 
 /* Contenido central */
@@ -103,56 +144,57 @@
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold, #d4a843);
 }
 
 .cta__badge-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--gold, #d4a843);
   flex-shrink: 0;
   animation: dotPulse 2s ease-in-out infinite;
 }
 
 @keyframes dotPulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.4; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
 }
 
 /* Título */
 .cta__title {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 5px;
   margin-bottom: 28px;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .cta__title-white {
-  font-size: clamp(52px, 7vw, 88px);
+  font-size: clamp(40px, 7vw, 88px);
   font-weight: 900;
-  color: var(--white);
+  color: var(--white, #ffffff);
   letter-spacing: -1px;
-  line-height: 1.0;
+  line-height: 1.1;
   text-transform: uppercase;
 }
 
 .cta__title-gold {
-  font-size: clamp(52px, 7vw, 88px);
+  font-size: clamp(40px, 7vw, 88px);
   font-weight: 900;
-  color: var(--gold);
+  color: var(--gold, #d4a843);
   letter-spacing: -1px;
-  line-height: 1.0;
+  line-height: 1.1;
   text-transform: uppercase;
+  display: inline-block;
 }
 
 /* Subtítulo */
 .cta__subtitle {
   font-size: 15px;
   font-weight: 400;
-  line-height: 1.8;
-  color: var(--white-60);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
   max-width: 580px;
   margin: 0 auto 40px;
 }
@@ -169,79 +211,236 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-main);
+  font-family: var(--font-main, 'Arial', sans-serif);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  border-radius: 2px;
+  border-radius: 4px;
   transition: all 0.3s ease;
   cursor: pointer;
   text-decoration: none;
+  border: none;
 }
 
 .cta__btn--primary {
-  background: var(--gold-gradient);
-  color: var(--black);
-  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
-  padding: 13px 48px;
+  background: linear-gradient(135deg, #d4a843 0%, #c49a2e 100%);
+  color: #000000;
+  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.35);
+  padding: 14px 48px;
 }
 
 .cta__btn--primary:hover {
-  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.55);
+  box-shadow: 0 8px 30px rgba(212, 168, 67, 0.55);
   transform: translateY(-2px);
+  background: linear-gradient(135deg, #e0b450 0%, #d4a843 100%);
 }
 
 .cta__btn--secondary {
   background: transparent;
-  color: var(--white);
-  border: 1px solid rgba(201, 168, 76, 0.5);
+  color: var(--white, #ffffff);
+  border: 1px solid rgba(212, 168, 67, 0.5);
   padding: 13px 40px;
 }
 
 .cta__btn--secondary:hover {
-  border-color: var(--gold);
-  background: rgba(201, 168, 76, 0.08);
-  color: var(--gold-light);
+  border-color: var(--gold, #d4a843);
+  background: rgba(212, 168, 67, 0.1);
+  color: #e0b450;
   transform: translateY(-2px);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .cta__coin img {
-    width: 120px;
-    height: 120px;
+/* ============================================ */
+/* RESPONSIVE DESIGN */
+/* ============================================ */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .cta {
+    padding: 100px 0;
+    min-height: auto;
   }
 
-  .cta__coin--btc {
-    left: -20px;
+  .cta__coin--desktop img {
+    width: 140px;
+    height: 140px;
   }
 
-  .cta__coin--eth {
-    right: -20px;
+  .cta__title-white,
+  .cta__title-gold {
+    font-size: clamp(36px, 6vw, 70px);
+  }
+
+  .cta__subtitle {
+    font-size: 14px;
+    padding: 0 20px;
   }
 }
 
-@media (max-width: 600px) {
+/* Tablets pequeñas y móviles grandes */
+@media (max-width: 768px) {
   .cta {
-    padding: 80px 0;
+    padding: 70px 0;
   }
 
   .cta__container {
-    padding: 0 20px;
+    padding: 0 24px;
   }
 
-  .cta__coin img {
+  /* Ocultar monedas grandes */
+  .cta__coin--desktop {
+    display: none;
+  }
+
+  /* Mostrar monedas móviles */
+  .cta__coin--mobile {
+    display: block;
+  }
+
+  .cta__coin--btc-mobile img,
+  .cta__coin--eth-mobile img {
     width: 80px;
     height: 80px;
   }
 
+  .cta__badge {
+    margin-bottom: 20px;
+    font-size: 10px;
+  }
+
+  .cta__title {
+    margin-bottom: 20px;
+    gap: 0;
+  }
+
+  .cta__title-white,
+  .cta__title-gold {
+    font-size: clamp(32px, 5.5vw, 50px);
+  }
+
+  .cta__subtitle {
+    font-size: 13px;
+    margin-bottom: 30px;
+    padding: 0;
+  }
+
   .cta__btn-group {
-    flex-direction: column;
+    gap: 12px;
     width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .cta__btn {
+    padding: 12px 24px;
+    font-size: 12px;
     width: 100%;
+  }
+}
+
+/* Móviles */
+@media (max-width: 600px) {
+  .cta {
+    padding: 60px 0;
+  }
+
+  .cta__container {
+    padding: 0 16px;
+  }
+
+  .cta__coin--btc-mobile {
+    left: -20px;
+    top: 10%;
+  }
+
+  .cta__coin--eth-mobile {
+    right: -20px;
+    bottom: 10%;
+  }
+
+  .cta__coin--btc-mobile img,
+  .cta__coin--eth-mobile img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cta__badge {
+    font-size: 9px;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .cta__badge-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .cta__title-white,
+  .cta__title-gold {
+    font-size: clamp(28px, 5vw, 40px);
+  }
+
+  .cta__subtitle {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+  }
+
+  .cta__btn-group {
+    gap: 10px;
+  }
+
+  .cta__btn {
+    padding: 10px 20px;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .cta__btn--primary,
+  .cta__btn--secondary {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 380px) {
+  .cta {
+    padding: 50px 0;
+  }
+
+  .cta__coin--btc-mobile {
+    left: -15px;
+  }
+
+  .cta__coin--eth-mobile {
+    right: -15px;
+  }
+
+  .cta__coin--btc-mobile img,
+  .cta__coin--eth-mobile img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cta__title-white,
+  .cta__title-gold {
+    font-size: clamp(24px, 4.5vw, 32px);
+  }
+
+  .cta__subtitle {
+    font-size: 11px;
+  }
+
+  .cta__btn {
+    padding: 10px 16px;
+    font-size: 10px;
+  }
+}
+
+/* Prevenir problemas de scroll horizontal */
+@media (max-width: 768px) {
+  .cta {
+    overflow-x: hidden;
   }
 }
