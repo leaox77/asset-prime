@@ -37,7 +37,7 @@ const Contact = () => {
         </svg>
       ),
       label: 'Oficina Principal',
-      value: 'La Paz, Bolivia',
+      value: 'Calle, Washintong Gral, esquina Juan de Salazar, Numero #791',
     },
     {
       icon: (
@@ -46,7 +46,7 @@ const Contact = () => {
         </svg>
       ),
       label: 'Email',
-      value: 'contacto@assetprime.com',
+      value: 'aassetsprime@gmail.com | info@assetprime.net',
     },
     {
       icon: (
@@ -55,7 +55,7 @@ const Contact = () => {
         </svg>
       ),
       label: 'Teléfono',
-      value: '+591 2 123 4567',
+      value: '+595 991 454992',
     },
     {
       icon: (
