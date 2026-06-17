@@ -1,18 +1,30 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './Contact.css';
+import { supabase } from '../lib/supabaseClient';
 
 const Contact = () => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
+  const [form, setForm] = useState({ 
+    name: '', 
+    email: '', 
+    phone: '', 
+    service: '', 
+    message: '' 
+  });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) { setVisible(true); observer.disconnect(); }
+        if (entry.isIntersecting) { 
+          setVisible(true); 
+          observer.disconnect(); 
+        }
       },
       { threshold: 0.1 }
     );
@@ -20,13 +32,60 @@ const Contact = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    if (error) setError(null);
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
-    setForm({ name: '', email: '', phone: '', service: '', message: '' });
+    setLoading(true);
+    setError(null);
+
+    try {
+      // Validación básica adicional
+      if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+        throw new Error('Por favor completa todos los campos requeridos.');
+      }
+
+      // Validar formato de email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(form.email)) {
+        throw new Error('Por favor ingresa un email válido.');
+      }
+
+      const { data, error: supabaseError } = await supabase
+        .from('contact_requests')
+        .insert([
+          {
+            name: form.name.trim(),
+            email: form.email.trim(),
+            phone: form.phone?.trim() || null,
+            service: form.service || null,
+            message: form.message.trim(),
+            status: 'pending'
+          }
+        ])
+        .select();
+
+      if (supabaseError) {
+        console.error('Supabase error details:', supabaseError);
+        throw new Error(supabaseError.message || 'Error al guardar en la base de datos.');
+      }
+
+      console.log('✅ Datos guardados exitosamente:', data);
+      
+      setSubmitted(true);
+      setLoading(false);
+      setForm({ name: '', email: '', phone: '', service: '', message: '' });
+      
+      setTimeout(() => setSubmitted(false), 4000);
+
+    } catch (error) {
+      console.error('❌ Error en el formulario:', error);
+      setError(error.message || 'Ocurrió un error inesperado. Por favor, intenta nuevamente.');
+      setLoading(false);
+    }
   };
 
   const infoItems = [
@@ -37,7 +96,7 @@ const Contact = () => {
         </svg>
       ),
       label: 'Oficina Principal',
-      value: 'Calle, Washintong Gral, esquina Juan de Salazar, Numero #791',
+      value: 'Calle, Washington Gral, esquina Juan de Salazar, Numero #791',
     },
     {
       icon: (
@@ -122,9 +181,19 @@ const Contact = () => {
             <form className="contact__form" onSubmit={handleSubmit}>
               <h3 className="contact__form-title">Solicitar Asesoría</h3>
 
+              {error && (
+                <div className="contact__error">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
+                    <circle cx="8" cy="8" r="7" stroke="#f87171" strokeWidth="1.5"/>
+                    <path d="M8 4v5M8 12v-1" stroke="#f87171" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                  <span>{error}</span>
+                </div>
+              )}
+
               <div className="contact__form-row">
                 <div className="contact__field">
-                  <label>Nombre Completo</label>
+                  <label>Nombre Completo *</label>
                   <input
                     type="text"
                     name="name"
@@ -132,10 +201,11 @@ const Contact = () => {
                     value={form.name}
                     onChange={handleChange}
                     required
+                    disabled={loading}
                   />
                 </div>
                 <div className="contact__field">
-                  <label>Email</label>
+                  <label>Email *</label>
                   <input
                     type="email"
                     name="email"
@@ -143,6 +213,7 @@ const Contact = () => {
                     value={form.email}
                     onChange={handleChange}
                     required
+                    disabled={loading}
                   />
                 </div>
               </div>
@@ -156,11 +227,18 @@ const Contact = () => {
                     placeholder="+591 ..."
                     value={form.phone}
                     onChange={handleChange}
+                    disabled={loading}
                   />
                 </div>
                 <div className="contact__field">
                   <label>Servicio de Interés</label>
-                  <select name="service" value={form.service} onChange={handleChange} required>
+                  <select 
+                    name="service" 
+                    value={form.service} 
+                    onChange={handleChange} 
+                    required
+                    disabled={loading}
+                  >
                     <option value="">Seleccionar...</option>
                     <option value="wealth">Wealth Management</option>
                     <option value="education">Educación Financiera</option>
@@ -172,7 +250,7 @@ const Contact = () => {
               </div>
 
               <div className="contact__field contact__field--full">
-                <label>Mensaje</label>
+                <label>Mensaje *</label>
                 <textarea
                   name="message"
                   rows="4"
@@ -180,14 +258,28 @@ const Contact = () => {
                   value={form.message}
                   onChange={handleChange}
                   required
+                  disabled={loading}
                 />
               </div>
 
-              <button type="submit" className="contact__submit">
-                <span>Enviar Solicitud</span>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+              <button 
+                type="submit" 
+                className="contact__submit"
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <span className="contact__spinner"></span>
+                    <span>Enviando...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Enviar Solicitud</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </>
+                )}
               </button>
             </form>
           )}

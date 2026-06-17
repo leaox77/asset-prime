@@ -354,3 +354,127 @@
     padding: 24px;
   }
 }
+
+/* ============================================
+   ESTILOS ADICIONALES PARA ERROR Y LOADING
+   ============================================ */
+
+/* Error message */
+.contact__error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  color: #fca5a5;
+  font-size: 13px;
+  line-height: 1.5;
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* Disabled fields */
+.contact__field input:disabled,
+.contact__field select:disabled,
+.contact__field textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Submit button states */
+.contact__submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.15);
+}
+
+.contact__submit:disabled:hover {
+  transform: none !important;
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.15);
+}
+
+/* Spinner */
+.contact__spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: var(--black);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success animation enhancement */
+.contact__success {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 4px;
+  padding: 60px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: fadeIn 0.5s ease;
+}
+
+.contact__success-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scaleIn 0.5s ease 0.2s both;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Required field indicator */
+.contact__field label:has(+ input[required])::after,
+.contact__field label:has(+ select[required])::after,
+.contact__field label:has(+ textarea[required])::after {
+  content: ' *';
+  color: #f87171;
+}
+
+/* Responsive adjustments for error */
+@media (max-width: 600px) {
+  .contact__error {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+
+  .contact__success {
+    padding: 40px 20px;
+  }
+
+  .contact__success h3 {
+    font-size: 18px;
+  }
+}
